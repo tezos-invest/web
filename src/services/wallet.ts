@@ -8,6 +8,7 @@ export type DAppConnection = {
   type: "temple" | "beacon";
   pkh: string;
   pk: string;
+  contractAddress: string;
   tezos: TezosToolkit;
   templeWallet?: TempleWallet;
 };
@@ -17,9 +18,11 @@ const beaconWallet = new BeaconWallet({
 });
 
 export const defaultUrls = {
-  [BeaconNetwork.HANGZHOUNET]: "https://mainnet.api.tez.ie",
-  [BeaconNetwork.HANGZHOUNET]: "https://rpc.tzkt.io/hangzhou2net/",
+  [BeaconNetwork.MAINNET]: "https://testnet-tezos.giganode.io",
+  [BeaconNetwork.HANGZHOUNET]: "https://hangzhounet.smartpy.io",
 };
+
+const contractAddress = "KT18q4si6YmzJjbgZ3wV7HYfds1E3EbD7tBx";
 
 const michelEncoder = new MichelCodecPacker();
 
@@ -55,6 +58,7 @@ export const connectWalletBeacon = async (
     type: "beacon",
     pkh: activeAcc.address,
     pk: activeAcc.publicKey,
+    contractAddress,
     tezos,
   };
 };

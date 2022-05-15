@@ -41,9 +41,29 @@ export type TEmulateRequest = {
   assets: Array<TEmulateAsset>;
 };
 
+export type TMarkovitzRequest = TEmulateRequest;
+
+export type TEmulateResponse = {
+  result: Array<TEmulateItem>;
+};
+export type TMarkovitzResponse = {
+  result: Array<TMarkovitzItem>;
+};
+
 export type TEmulateAsset = {
   symbol: string;
   weight: number;
+};
+
+export type TEmulateItem = {
+  day: string;
+  evaluation: number;
+};
+
+export type TMarkovitzItem = {
+  profit_percent: number;
+  volatility: number;
+  weights: Record<string, number>;
 };
 
 export type TGetPortfolioRequest = {

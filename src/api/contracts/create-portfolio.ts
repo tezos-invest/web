@@ -3,54 +3,43 @@ import { DAppConnection } from "../../services/wallet";
 import { MichelsonMap } from "@taquito/taquito";
 
 const formatDataToCreatePortfolio = (pools: TPoolWithWeight[]) => {
-  const michelsonData = new MichelsonMap();
-
-  const tokens: Record<
-    string,
-    { [index: string]: { address: string; token_id?: string } }
-  > = {};
-  const weights: Record<string, number> = {};
+  const tokensMap = new MichelsonMap();
+  const weightsMap = new MichelsonMap();
 
   pools.forEach((pool) => {
     if (pool.tzips === Tzips.FA2) {
-      tokens[pool.token_symbol] = {
+      tokensMap.set(pool.token_symbol, {
         [pool.tzips]: {
           address: pool.pool_address,
           token_id: pool.token_id,
         },
-      };
+      });
     } else {
-      tokens[pool.token_symbol] = {
-        [pool.tzips]: {
-          address: pool.pool_address,
-        },
-      };
+      tokensMap.set(pool.token_symbol, {
+        [pool.tzips]: pool.pool_address,
+      });
     }
 
-    weights[pool.token_symbol] = pool.weight ?? 0;
+    weightsMap.set(pool.token_symbol, pool.weight ?? 0);
   });
-  //
-  // michelsonData.set(`tokens`, tokens);
-  // michelsonData.set(`weights`, weights);
 
-  return { tokens, weights };
+  return { tokensMap, weightsMap };
 };
-
-const contractAddress = "KT18q4si6YmzJjbgZ3wV7HYfds1E3EbD7tBx";
 
 const createPortfolio = async (
   connection: DAppConnection,
   data: TPoolWithWeight[]
 ) => {
-  const { tezos } = connection;
+  const { tezos, contractAddress } = connection;
 
-  const formattedData = formatDataToCreatePortfolio(data);
-
-  console.log("formattedData", formattedData);
+  const { tokensMap, weightsMap } = formatDataToCreatePortfolio(data);
 
   const contract = await tezos.wallet.at(contractAddress);
-  const contractMethodObject =
-    contract.methodsObject.create_portfolio(formattedData);
+
+  const contractMethodObject = contract.methods.create_portfolio(
+    tokensMap,
+    weightsMap
+  );
 
   console.log("contract", contract);
   console.log("contractMethod", contractMethodObject);
