@@ -68,6 +68,7 @@ export type TMarkovitzItem = {
 
 export type TGetPortfolioRequest = {
   owner: string;
+  contract_address: string;
 };
 
 export type TGetPortfolioResponse = {

@@ -1,29 +1,66 @@
 @import '~antd/dist/antd.css';
 
-.main-page {
-    background: cornflowerblue;
+.main-page__init {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
-.pools {
+.main-page__header {
+    position: fixed;
+    z-index: 2;
+    background: white;
+    padding: 30px 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
     display: flex;
     align-items: center;
 }
 
-.main-page .main-page__title {
+.main-page__title {
+    font-size: 32px;
+}
+
+.main-page__actions {
+    margin-left: auto;
+}
+
+.main-page__actions > *:not(:last-child) {
+    margin-right: 12px;
+}
+
+.main-page__pools {
+    padding-top: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+.main-page__table {
+    padding-top: 120px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+}
+
+.main-page  {
     color: white;
     margin-bottom: 40px;
 }
 
-.main-page .main-page__chart {
+.main-page__chart {
+    padding-top: 120px;
+    padding-left: 60px;
     width: 70%;
+    border-radius: 20px;
+    background: white;
 }
 
-.main-page .main-page__pie{
-    width: 30%;
-    border-radius: 20px;
-    padding: 20px;
+.main-page__pie{
+    padding-left: 60px;
+    padding-top: 120px;
+    width: 40%;
 }

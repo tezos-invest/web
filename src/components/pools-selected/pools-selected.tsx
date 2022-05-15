@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, memo } from "react";
 import { TPoolWithWeight } from "../../helpers/types";
 import { DeleteOutlined } from "@ant-design/icons";
 import "./pools-selected.css";
@@ -9,7 +9,7 @@ type TPoolsProps = {
   onChangeWeight: (poolAddress: string, weight?: number) => void;
 };
 
-const PoolsSelected = (props: TPoolsProps): JSX.Element => {
+const PoolsSelected = memo((props: TPoolsProps): JSX.Element => {
   const { pools, onRemove, onChangeWeight } = props;
 
   const handleChangeWeight =
@@ -46,6 +46,6 @@ const PoolsSelected = (props: TPoolsProps): JSX.Element => {
       })}
     </ul>
   );
-};
+});
 
 export { PoolsSelected };

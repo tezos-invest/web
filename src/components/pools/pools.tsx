@@ -1,13 +1,14 @@
 import { TPool } from "../../helpers/types";
 import { getLetters } from "../../helpers/utils";
 import "./pools.css";
+import { memo } from "react";
 
 type TPoolsProps = {
   pools: Array<TPool>;
   onAdd: (pool: TPool) => () => void;
 };
 
-const Pools = (props: TPoolsProps): JSX.Element => {
+const Pools = memo((props: TPoolsProps): JSX.Element => {
   const { pools, onAdd } = props;
   return (
     <ul className="pools-list">
@@ -23,6 +24,6 @@ const Pools = (props: TPoolsProps): JSX.Element => {
       })}
     </ul>
   );
-};
+});
 
 export { Pools };

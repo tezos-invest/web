@@ -22,7 +22,7 @@ export const defaultUrls = {
   [BeaconNetwork.HANGZHOUNET]: "https://hangzhounet.smartpy.io",
 };
 
-const contractAddress = "KT18q4si6YmzJjbgZ3wV7HYfds1E3EbD7tBx";
+const contractAddress = "KT1VGgaRoZiJGTpt3NduKyt3j813e5wyGEyz";
 
 const michelEncoder = new MichelCodecPacker();
 

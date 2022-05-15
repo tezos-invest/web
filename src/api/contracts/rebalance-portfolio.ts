@@ -12,7 +12,7 @@ const formatDataForRebalancePortfolio = (pools: TPoolWithWeight[]) => {
   });
 
   const slippage = 5;
-  const amount = 200000000;
+  const amount = 2000000000;
 
   return { pricesMap, poolsMap, slippage, amount };
 };
